@@ -4,13 +4,23 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.rururi.businesscard.ui.theme.BusinessCardTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,28 +29,54 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BusinessCardTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                BusinessCardApp()   //これを追加
             }
         }
     }
 }
 
 @Composable
-fun Greeting(modifier: Modifier = Modifier) {
-    Text(
-        text = "名前：　涼風　るるりこ",   //名前をこちらに設定
+fun BusinessCardApp(modifier: Modifier = Modifier) {
+    Column(
         modifier = modifier
-    )
+            .padding(start = 16.dp,top = 100.dp,end = 16.dp,bottom = 16.dp)
+            .background(color=Color.Magenta)
+            .fillMaxSize(),
+    ) {
+        Text(text = "株式会社")
+        Text(
+            text = "テックるっこ",
+            fontSize = 30.sp,
+            modifier=Modifier.padding(start=16.dp),
+        )
+        Spacer(modifier = Modifier.height(120.dp))  //たっぷりスペースをあける
+        Text(
+            text = "android team",
+            fontFamily = FontFamily.Monospace
+        )
+        Text(
+            text = "涼風　るるりこ",
+            fontSize = 48.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+        )
+        Text(
+            text = "suzukaze rururiko",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+        )
+    }
 }
 
-@Preview(showBackground = true)     //プレビュー欄に表示するよ！という意味
-@Composable                         //アプリに表示するための部品だよ！という意味
-fun GreetingPreview() {             //関数の名前
-    BusinessCardTheme {             //このアプリ専用のテーマ（今は気にしない）
-        Greeting()  //ここに設定した名前は消す
+
+
+@Preview(showBackground = true)
+@Composable
+fun BusinessCardPreview() {
+    BusinessCardTheme {
+        BusinessCardApp()
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +20,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -41,10 +44,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun BusinessCardApp(modifier: Modifier = Modifier) {
+    Image(
+        painter = painterResource(id = R.drawable.background),  //さっき入れた画像を指定
+        contentDescription = "背景",
+        modifier=Modifier.fillMaxSize(),        //Imageを最大限に広げる
+        contentScale = ContentScale.Crop,       //画像を引き延ばしてImageの大きさに合わせる
+    )
     Column(
         modifier = modifier
             .padding(start = 16.dp, top = 120.dp, end = 16.dp, bottom = 16.dp)
-//            .background(color = Color.Magenta)
             .fillMaxSize(),
     ) {
         Text(text = "株式会社")
